@@ -1,39 +1,115 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, TouchableOpacity, View } from "react-native";
-import Label from "../components/Label";
-import useCounter from "../states/useCounter";
+import React from "react";
+
+import { TouchableOpacity, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+
 import "../global.css";
+import Offer from "../components/Offer";
+import { offers } from "../mocks/offers";
+import SearchBar from "../components/SearchBar";
 
 export default function Home() {
-  const { add, reset } = useCounter();
-  
+  const handleSearch = (val: string) => {
+    console.log("O Valor digitado na busca foi: ", val);
+  };
   return (
-    <View className="flex-1 items-center justify-center bg-red-200">
+    <View style={styles.container}>
 
-      <TouchableOpacity className="bg-blue-400 absolute inset-x-0 top-0 h-10  "/>
-              
-      <TouchableOpacity className="bg-blue-700 absolute inset-x-0 top-10 h-16  ">
-        <Text className="text-white text-center text-3xl ">Módulo 2</Text>
-        <Text className="text-white text-center font-bold font-extralight">
-          Estilização de Componentes com NativeWind
+      <View style={styles.headerContainer}>
+        <Text style={styles.h1}>
+          Módulo 03
         </Text>
-      </TouchableOpacity>
+        <Text style={styles.h2}>
+          Boas práticas para a criação de componentes reutilizáveis.
+        </Text>
+      </View>
+      <View style={styles.headerSubContainer}>
+        <SearchBar onSearch={handleSearch} />
+      </View>
 
-      <Text className="font-bold text-xl text-center ">
-        Contador = <Label />
-      </Text>
-      
-      <TouchableOpacity className="bg-green-700 p-4 rounded-lg mt-4"
-        onPress={() => add()}>
-        <Text className="text-white font-bold ">Contador</Text>
-      </TouchableOpacity>
-      <TouchableOpacity className="bg-red-700 p-4 rounded-lg mt-4"
-        onPress={() => reset()}>
-        <Text className="text-white font-bold ">Zerar</Text>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
-      <TouchableOpacity className="bg-blue-400 absolute inset-x-0 bottom-0 h-10  "/>
+      <ScrollView>
+        {offers.map((item, index) => (
+          <Offer
+            key={index}
+            veiculo={item.veiculo}
+            modelo={item.modelo}
+            ano={item.ano}
+            chassi={item.chassi}
+            preco={item.preco}
+          />
+        ))}
+      </ScrollView>
+ 
+      <TouchableOpacity style={styles.rodape} />
 
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  rodape:{
+    backgroundColor:"#e0ae67",
+    position: "absolute",
+    height: 20,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  cabecalho:{
+    backgroundColor:"#e0ae67",
+    position: "absolute",
+    height: 20,
+    left: 0,
+    right: 0,
+    top: 0,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  headerContainer: {
+    backgroundColor: "#e0ae67",
+    padding: 24,
+  },
+  headerSubContainer: {
+    backgroundColor: "#81656c",
+    padding: 15,
+  },
+  headerSearch: {
+    backgroundColor: "white",
+    paddingLeft: 8,
+    height: 48,
+    borderRadius: 24,
+    flexGrow: 1,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  h1: {
+    marginTop: 8,
+    fontSize: 30,
+    textAlign:"center",
+  },
+  h2: {
+    marginTop: 8,
+    fontSize: 16,
+    textAlign:"center",
+  },
+  headerIcon: {
+    width: 48,
+    height: 48,
+    backgroundColor: "lightgrey",
+    borderRadius: 24,
+    marginLeft: 16,
+  },
+  headerRow: {
+    flexDirection: "row",
+  },
+});
+
