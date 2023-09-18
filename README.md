@@ -1,3 +1,3 @@
-# Módulo 03: Boas práticas para a criação de componentes reutilizáveis
+# Módulo 04: Persistência de Dados Local com uso de SQLite
 
 🎓 
