@@ -1,4 +1,4 @@
-import { OfferProps } from "../components/Offer";
+import { OfferProps } from "../components/Cars";
 
 export const offers: OfferProps[] = [
   {
