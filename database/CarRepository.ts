@@ -30,14 +30,27 @@ export default class CarRepository {
     );
     return result.insertId;
   }
-
+  public async update(brand:string, model:string, hp:number, id:number) {
+    const result = await executeTransaction(
+      "UPDATE cars SET brand = ?, model = ?, hp = ? WHERE id = ?",
+      [brand, model, hp, id]
+    );
+    return result.rows._array;
+  }
   public async all() {
     const result = await executeTransaction("SELECT * FROM cars;");
     return result.rows._array;
   }
-
   public async filtroHp(min:number,max:number) {
     const resultFiltro = await executeTransaction("SELECT * FROM cars WHERE hp>=? AND hp<=?",[min,max]);
+    return resultFiltro.rows._array;
+  }
+  public async filtroId(id:number) {
+    const resultFiltro = await executeTransaction("SELECT * FROM cars WHERE id=?;",[id]);
+    return resultFiltro.rows._array;
+  }
+  public async filtroModelo(qual:string) {
+    const resultFiltro = await executeTransaction("SELECT * FROM cars WHERE model like ?;",['%'+ qual+'%']);
     return resultFiltro.rows._array;
   }
   
