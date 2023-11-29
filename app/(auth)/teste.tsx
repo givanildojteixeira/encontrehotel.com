@@ -1,6 +1,6 @@
 import { Button, ScrollView, StyleSheet, Text, Alert, View, TouchableOpacity, TextInput, Modal} from "react-native";
 import React, { useState } from "react";
-import CarRepository, { Car } from "../database/CarRepository";
+import CarRepository, { Car } from "../../database/CarRepository";
 
 import {Link} from "expo-router";
 import "../global.css";
