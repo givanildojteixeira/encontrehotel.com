@@ -29,16 +29,6 @@ export default function _layout() {
           title: "Profile",
         }}
       />
-       <Tabs.Screen
-        name="profile"
-        options={{
-          headerShown: false,
-          tabBarIcon: () => (
-            <Icon type="antdesign" name="user" color={theme.colors.primary} />
-          ),
-          title: "Profile",
-        }}
-      />
     </Tabs>
   );
 }
