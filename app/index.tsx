@@ -20,13 +20,13 @@ export default function _screen() {
       <Input label="Email" placeholder="email" />
       <Input label="Password" placeholder="password" secureTextEntry />
       <Button
-        title="Login"
+        title="Entrar"
         containerStyle={styles.login}
         onPress={handleLogin}
       />
 
       <Link href="/register">
-        <Text style={styles.register}>Create Account</Text>
+        <Text style={styles.register}>Criar Conta</Text>
       </Link>
     </View>
   );
