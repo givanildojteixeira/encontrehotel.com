@@ -21,15 +21,15 @@ export default function _screen() {
   const { login, loading } = useAuth();
 
   const [email, setEmail] = useState("fulano@example.com");
-  const [password, setPassword] = useState("123456");
+  const [password, setPassword] = useState("1234456");
 
   if (loading) return <Loading />;
 
 
-  const handleLogin = () => {
-    console.log("TODO: login user!");
-    router.push("/(auth)/(home)/home");
-  };
+  // const handleLogin = () => {
+  //   console.log("TODO: login user!");
+  //   router.push("/(auth)/(home)/home");
+  // };
 
   return (
     // <View>

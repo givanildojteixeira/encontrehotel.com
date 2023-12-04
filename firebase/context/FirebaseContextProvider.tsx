@@ -45,13 +45,15 @@ export function FirebaseContextProvider({
   const [auth, setAuth] = useState<Auth | null>(null);
 
   useEffect(() => {
-    const app = initializeApp(firebaseConfig!);
-    setApp(app);
-
-    const auth = firebaseAuth.initializeAuth(app, {
-      persistence: getReactNativePersistence(AsyncStorage),
-    });
-    setAuth(auth);
+    if (!getApps().length) {
+      const app = initializeApp(firebaseConfig!);
+      setApp(app);
+  
+      const auth = firebaseAuth.initializeAuth(app, {
+        persistence: getReactNativePersistence(AsyncStorage),
+      })
+      setAuth(auth);
+    }
   }, []);
 
   const context: FirebaseContextProps = {
