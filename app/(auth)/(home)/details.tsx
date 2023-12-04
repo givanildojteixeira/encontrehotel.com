@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobalSearchParams } from "expo-router";
+import { useGlobalSearchParams, useNavigation } from "expo-router";
 import { View, FlatList, TouchableOpacity, Modal, StyleSheet, Dimensions } from 'react-native';
 
 import { Text } from "@rneui/base";
@@ -13,14 +13,25 @@ import { ImageBackground } from 'react-native';
 
 export default function details() {
   const { id, nome,estrelas,local, vista, descricao, cancelamento ,preco } = useGlobalSearchParams();
-
+  const navigation = useNavigation();
   const handleButtonPress = (qual: number) => {
+    const parametrosParaEnviar = {
+      id,
+      nome,
+      estrelas,
+      local,
+      vista,
+      descricao,
+      cancelamento,
+      preco,
+    };
+
     if (qual === 1) {
       console.log('Botão Opção de quarto!');
     } else if (qual === 2) {
       console.log('Botão Ver Localização!');
     } else {
-      console.log('Botão Reservar!');
+      navigation.navigate('reservar', parametrosParaEnviar as { [key: string]: any });
     }
   };
 

@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@rneui/themed"
+import { Image, ThemeProvider } from "@rneui/themed"
 import { Stack } from "expo-router";
 import React from "react";
 import {  StyleSheet, Text,  View} from "react-native";
@@ -6,6 +6,7 @@ import { Icon } from "@rneui/base";
 import { useTheme } from "@rneui/themed";
 
 import "../global.css";
+import { globalStyles } from "../styles";
 
 export default function _layout() {
   // const { theme } = useTheme();
@@ -14,16 +15,17 @@ export default function _layout() {
     <ThemeProvider>
             {/* Cabeçalho */}
           <View style={styles.headerContainer}>
-            <Text style={styles.h1}>
-            <Icon type="antdesign" name="home" />
-              EncontreHotel.com
-            </Text>
+            <View style={globalStyles.emlinha} >
+              <Image source={require('../img/icone.png')} style={globalStyles.IconeCabecalho} />
+              <Text style={styles.h1}>EncontreHotel.com</Text>
+            </View>
+              {/* <Icon type="antdesign" name="home" /> */}
             <Text style={styles.h2}>Os melhores hoteis a preços acessíveis</Text>
         </View>
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="register" options={{ title: "Create Account" }} />
+        <Stack.Screen name="register" options={{ title: "Create Account"} } />
       </Stack>
     </ThemeProvider>
   )};

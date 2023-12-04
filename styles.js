@@ -29,6 +29,10 @@ export const globalStyles = StyleSheet.create({
         // borderBottomWidth: 1,
         // borderBottomColor: '#ddd',
       },
+  emlinha: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
     imagem: {
       width: 350,
       height:300,
@@ -42,6 +46,27 @@ export const globalStyles = StyleSheet.create({
       alignItems: 'center',
 
        borderRadius: 25, // Para tornar a imagem circular, ajuste conforme necessário
+    }, 
+    logoGrande: {
+      width: 200,
+      height:200,
+      // marginRight: 10,
+      // borderRadius: 25, // Para tornar a imagem circular, ajuste conforme necessário
+      alignItems: 'center',
+    },   
+    LogoPequeno: {
+      width: 50,
+      height:50,
+      // marginRight: 10,
+      // borderRadius: 25, // Para tornar a imagem circular, ajuste conforme necessário
+      // alignItems: 'center',
+    },  
+    IconeCabecalho: {
+      width: 63,
+      height:50,
+      // marginRight: 10,
+      // borderRadius: 25, // Para tornar a imagem circular, ajuste conforme necessário
+      // alignItems: 'center',
     }, 
     imagemCapa: {
         width: '100%',
@@ -127,6 +152,25 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign:"center",
       },
+    
+    cInputBox:{
+      height: 40, 
+      borderColor: 'gray', 
+      borderWidth: 1, 
+      paddingHorizontal: 10, 
+      flex: 1, 
+    },
+    cInputBoxSubCab:{
+      borderWidth: 1, 
+      height: 40, 
+      // borderColor: 'gray', 
+      padding: 10,
+
+    },
+    checkBoxContainer: {
+      backgroundColor: 'transparent', // Define o fundo como transparente
+      borderWidth: 0, // Remove a borda (opcional)
+    },
 
       image: {
         width: 100,
