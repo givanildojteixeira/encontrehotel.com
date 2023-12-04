@@ -1,9 +1,17 @@
 import { Image, ThemeProvider } from "@rneui/themed"
 import { Stack } from "expo-router";
 import React from "react";
-import {  StyleSheet, Text,  View} from "react-native";
-import { Icon } from "@rneui/base";
-import { useTheme } from "@rneui/themed";
+import {  Text,  View} from "react-native";
+import { Slot, useRouter } from "expo-router";
+import { useEffect } from "react";
+import Loading from "../components/Loading";
+import firebaseConfig from "../firebase/config/firebaseConfig";
+import {
+  FirebaseContextProvider,
+  useFirebaseContext,
+} from "../firebase/context/FirebaseContextProvider";
+import useAuth from "../firebase/hooks/useAuth";
+
 
 import "../global.css";
 import { globalStyles } from "../styles";
@@ -12,43 +20,41 @@ export default function _layout() {
   // const { theme } = useTheme();
   return (
 
-    <ThemeProvider>
-            {/* Cabeçalho */}
-          <View style={styles.headerContainer}>
-            <View style={globalStyles.emlinha} >
-              <Image source={require('../img/icone.png')} style={globalStyles.IconeCabecalho} />
-              <Text style={styles.h1}>EncontreHotel.com</Text>
-            </View>
-              {/* <Icon type="antdesign" name="home" /> */}
-            <Text style={styles.h2}>Os melhores hoteis a preços acessíveis</Text>
-        </View>
-      <Stack>
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="register" options={{ title: "Create Account"} } />
-      </Stack>
-    </ThemeProvider>
+    <FirebaseContextProvider firebaseConfig={firebaseConfig}>
+      <FirebaseWrapper />
+      <ThemeProvider>
+              {/* Cabeçalho */}
+            <View style={globalStyles.headerContainer}>
+              <View style={globalStyles.emlinha} >
+                <Image source={require('../img/icone.png')} style={globalStyles.IconeCabecalho} />
+                <Text style={globalStyles.h1}>EncontreHotel.com</Text>
+              </View>
+              <Text style={globalStyles.h2a}>Os melhores hoteis a preços acessíveis</Text>
+          </View>
+        <Stack>
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="register" options={{ title: "Create Account"} } />
+        </Stack>
+      </ThemeProvider>
+    </FirebaseContextProvider>
   )};
 
-const styles = StyleSheet.create({
 
-
-  headerContainer: {
-    backgroundColor: "#7cfc00",
-    padding: 35,
-    // borderWidth: 1, // Largura da borda
-    borderRadius: 5, // Raio de borda para arredondar
-    height:120,
-  },
-  h1: {
-    marginTop: 8,
-    fontSize: 30,
-    textAlign:"center",
-  },
-  h2: {
-    marginTop: 2,
-    fontSize: 16,
-    textAlign:"center",
-  },
+  function FirebaseWrapper() {
+    const router = useRouter();
+    const { app } = useFirebaseContext();
+    const { user, loading } = useAuth();
   
-});
+    useEffect(() => {
+      if (user) {
+        // router.replace("/home/");
+        router.replace("/(auth)/(home)/home");
+      }
+    }, [user]);
+  
+    if (!app) return <Loading />;
+  
+    return <Slot />;
+  }
+    
