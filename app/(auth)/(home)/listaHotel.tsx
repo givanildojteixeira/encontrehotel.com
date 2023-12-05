@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, TouchableOpacity, TextInput } from "react-native";
+import { View, FlatList, TouchableOpacity } from "react-native";
 import { Text } from "@rneui/base";
 import { Image } from "@rneui/themed";
 import { useNavigation } from '@react-navigation/native';
@@ -7,15 +7,23 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { data } from "../../../mocks/data";
 import { globalStyles } from "../../../styles";
 import * as utils from "../../../utils";
+import useStore from "../../../states/store";
 
 
 export default function _screen() {
   const navigation = useNavigation();
 
-
+  const setCidade = useStore((state) => state.setCidade);
+  
   const handlePress = (item) => {
+    //acerte os dados do store
+    const novaCidade = item.local;
+    setCidade(novaCidade);
+    console.log('cidade escolhida:', item.local);
+
     navigation.navigate('(auth)', { screen: '(home)', params: { screen: 'details', params: item } });
   };
+
 
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => handlePress(item)} style={globalStyles.item}>
@@ -53,12 +61,13 @@ export default function _screen() {
   return (
     <View>
       <View >
-        <TextInput
-          placeholder="Texto não editável"
-          editable={false}
-          style={globalStyles.cInputBoxSubCab}
-        />
+        <Text style={globalStyles.h2Home}>Parabéns, encontramos 3 locais perfeitos! </Text>
+        {/* <Text>
+        Local: {cidade} Data Entrada: {dataChegada} Data Saída: {dataSaida};
+      </Text> */}
       </View>
+    <View style={globalStyles.separator} />
+
       <FlatList
         data={data}
         keyExtractor={(item) => item.nome}

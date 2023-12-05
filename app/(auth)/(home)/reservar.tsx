@@ -9,11 +9,16 @@ import { globalStyles } from "../../../styles";
 import * as utils from "../../../utils";
 import { data } from "../../../mocks/data";
 import { RadioButton } from 'react-native-paper';
+import useStore from '../../../states/store';
 
 import { ImageBackground } from 'react-native';
 
 export default function details() {
   const { id, nome,estrelas,local, vista, descricao, cancelamento ,preco } = useGlobalSearchParams();
+
+  const cidade = useStore((state) => state.cidade);
+  const dataChegada = useStore((state) => state.dataChegada);
+  const dataSaida = useStore((state) => state.dataSaida);
 
   const handleButtonPress = (qual: number) => {
     if (qual === 1) {
@@ -62,8 +67,9 @@ export default function details() {
     </View>
 
     <Text style={globalStyles.h2}>Dados da reserva:</Text>
-    <Text style={globalStyles.h3}>Data entrada:</Text>
-    <Text style={globalStyles.h3}>Data saída:</Text>
+    <Text style={globalStyles.h3}>Cidade:{cidade}</Text>
+    <Text style={globalStyles.h3}>Data entrada:{dataChegada}</Text>
+    <Text style={globalStyles.h3}>Data saída:{dataSaida}</Text>
     <Text style={globalStyles.h3}>Tipo da acomodação:</Text>
     <View style={globalStyles.separator} />
 

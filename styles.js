@@ -85,10 +85,12 @@ export const globalStyles = StyleSheet.create({
     }, 
     imagemCapa: {
         width: '100%',
-        height:300,
+        height:400,
         marginRight: 10,
         borderRadius: 25, // Para tornar a imagem circular, ajuste conforme necessário
-        alignItems: 'center',
+        alignItems: 'center',       // Centraliza horizontalmente
+        justifyContent: 'center',   // Centraliza verticalmente
+        resizeMode: 'stretch', // ou 'contain' ou 'stretch'
       },
     h1: {
         marginTop: 8,
@@ -105,6 +107,13 @@ export const globalStyles = StyleSheet.create({
       marginTop: 2,
       fontSize: 16,
       textAlign:"center",
+    },
+    h2Home:{
+      marginTop: 2,
+      fontSize: 20,
+      textAlign:"center",
+      fontWeight: 'bold',
+
     },
     h3: {
         // marginTop: 8,
