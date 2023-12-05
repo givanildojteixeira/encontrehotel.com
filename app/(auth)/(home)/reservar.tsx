@@ -14,7 +14,7 @@ import useStore from '../../../states/store';
 import { ImageBackground } from 'react-native';
 
 export default function details() {
-  const { id, nome,estrelas,local, vista, descricao, cancelamento ,preco } = useGlobalSearchParams();
+  const { id, nome,estrelas,local, vista, descricao, quarto, cancelamento ,preco } = useGlobalSearchParams();
 
   const cidade = useStore((state) => state.cidade);
   const dataChegada = useStore((state) => state.dataChegada);
@@ -67,10 +67,24 @@ export default function details() {
     </View>
 
     <Text style={globalStyles.h2}>Dados da reserva:</Text>
-    <Text style={globalStyles.h3}>Cidade:{cidade}</Text>
+    {/* <Text style={globalStyles.h3}>Cidade:{cidade}</Text>
     <Text style={globalStyles.h3}>Data entrada:{dataChegada}</Text>
-    <Text style={globalStyles.h3}>Data saída:{dataSaida}</Text>
-    <Text style={globalStyles.h3}>Tipo da acomodação:</Text>
+    <Text style={globalStyles.h3}>Data saída:{dataSaida}</Text> */}
+
+    <View style={globalStyles.Container2ColunasJustificadas}>
+      <View style={globalStyles.colunasDivididas}>
+        <Text style={globalStyles.h3}>Cidade:</Text>
+        <Text style={globalStyles.h3}>Data entrada:</Text>
+        <Text style={globalStyles.h3}>Data saída:</Text>
+      </View>
+      <View style={globalStyles.colunasDivididas}>
+        <Text style={globalStyles.h3}>{cidade}</Text>
+        <Text style={globalStyles.h3}>{dataChegada}</Text>
+        <Text style={globalStyles.h3}>{dataSaida}</Text>
+      </View>
+    </View>
+
+    <Text style={globalStyles.h3}>Tipo da acomodação: {quarto}</Text>
     <View style={globalStyles.separator} />
 
     <Text style={globalStyles.h2}>Forma de pagamento:</Text>

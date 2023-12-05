@@ -22,6 +22,15 @@ export const globalStyles = StyleSheet.create({
       borderRadius: 5, // Raio de borda para arredondar
       height:120,
     },
+    Container2ColunasJustificadas:{
+      flexDirection: 'row', // Para organizar em linha (horizontal)
+      justifyContent: 'space-between', // Para distribuir espaço entre as colunas
+    },
+    colunasDivididas: {
+      flex: 1, // Para ocupar a metade do espaço disponível
+      // marginLeft: 16, // Adapte conforme necessário
+    },
+
     item: {
       // flexDirection: 'row',
     //   alignItems: '',

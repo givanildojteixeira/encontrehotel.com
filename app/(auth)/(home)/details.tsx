@@ -12,7 +12,7 @@ import { data } from "../../../mocks/data";
 import { ImageBackground } from 'react-native';
 
 export default function details() {
-  const { id, nome,estrelas,local, vista, descricao, cancelamento ,preco } = useGlobalSearchParams();
+  const { id, nome,estrelas,local, vista, descricao, quarto, cancelamento ,preco } = useGlobalSearchParams();
   const navigation = useNavigation();
   const handleButtonPress = (qual: number) => {
     const parametrosParaEnviar = {
@@ -22,6 +22,7 @@ export default function details() {
       local,
       vista,
       descricao,
+      quarto,
       cancelamento,
       preco,
     };
