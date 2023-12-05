@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobalSearchParams } from "expo-router";
+import { Link, useGlobalSearchParams } from "expo-router";
 import { View, TouchableOpacity, Modal, StyleSheet, Dimensions } from 'react-native';
 
 import { Text } from "@rneui/base";
@@ -121,12 +121,17 @@ export default function details() {
 
     <View style={globalStyles.separator} />
 
-    <CheckBox
-      title="Concordo com os termos"
-      checked={check1}
-      onPress={() => setCheck1(!check1)}
-      containerStyle={globalStyles.checkBoxContainer}
-    />
+    <View style={globalStyles.emlinha}>
+      <CheckBox
+        // title="Concordo com os termos"
+        checked={check1}
+        onPress={() => setCheck1(!check1)}
+        containerStyle={globalStyles.checkBoxContainer}
+      />
+      <Link href="/termos">
+        <Text style={globalStyles.linkText}>Concordo com os termos</Text>
+      </Link>
+    </View>
 
 
         <TouchableOpacity style={globalStyles.button} onPress={() => handleButtonPress(1)}>

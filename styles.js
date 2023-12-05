@@ -112,6 +112,18 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign:"left",
       },
+    h2subtitulo: {
+        marginTop: 5,
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign:"left",
+      },
+    h2texto: {
+        // marginTop: 2,
+        fontSize: 16,
+        // fontWeight: 'bold',
+        textAlign:"left",
+      },
     h2a: {
       marginTop: 2,
       fontSize: 16,
@@ -138,6 +150,10 @@ export const globalStyles = StyleSheet.create({
         // marginTop: 8,
         fontSize:13,
         textAlign:"right",
+      },
+      linkText: {
+        textDecorationLine: 'underline',
+        color: 'blue', // ou qualquer cor desejada para o link
       },
     dValor: {
         // marginTop: 8,
@@ -280,9 +296,11 @@ export const globalStyles = StyleSheet.create({
       },
       login: {
         //botão de login
-        width: "90%",
+        width: "100%",
         paddingHorizontal: 8,
         // borderRadius: 15,
+        alignItems: "center",
+        justifyContent: "center",
       },
 
       register: {

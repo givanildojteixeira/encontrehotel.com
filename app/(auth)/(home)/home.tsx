@@ -8,6 +8,7 @@ import { Link, useRouter } from "expo-router";
 import { Icon } from "@rneui/base";
 import useStore from '../../../states/store';
 import { TextInputMask } from 'react-native-masked-text';
+import StyledButton from '../../../components/StyledButton';
 // import MaskedTextInput, { TextInputMask } from 'react-native-masked-text';
 
 export default function _screen() {
@@ -22,19 +23,13 @@ export default function _screen() {
   const dataSaida = useStore((state) => state.dataSaida);
   const setDataSaida = useStore((state) => state.setDataSaida);
   
-  const handleInputChange = (text: string) => {
-    setInputText(text);
-  };
-
-  const [data, setData] = React.useState('');
-
-  const dataleInputChange = (formatted, extracted) => {
-    setData(extracted);
-  };
+  // const handleInputChange = (text: string) => {
+  //   setInputText(text);
+  // };
 
   const handleButtonPress = () => {
     // Faça algo com o valor inserido, por exemplo, imprima no console
-    console.log('Texto inserido:', inputText);
+    // console.log('Texto inserido:', inputText);
     // Faça algo com a data selecionada, por exemplo, imprima no console
     // console.log('Data selecionada:', selectedDate);
     // setCidade('Guarapuava'); // Ou o valor do seu TextInput
@@ -66,12 +61,6 @@ export default function _screen() {
           {/* Segunda linha */}
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
             <Icon type="ionicon" name="calendar" size={20} color="black" style={{ marginRight: 10 }} />
-            {/* <TextInput
-              placeholder="Chegada"
-              value={dataChegada}
-              onChangeText={(text) => setDataChegada(text)}
-              style={globalStyles.cInputBox}
-            /> */}
             <TextInputMask
               style={globalStyles.cInputBox}
               placeholder="Chegada"
@@ -82,12 +71,6 @@ export default function _screen() {
             />
 
             <Icon type="ionicon"  name="calendar" size={20} color="black" style={{ marginRight: 10 }} />
-            {/* <TextInput
-              placeholder="Saída"
-              value={dataSaida}
-              onChangeText={(text) => setDataSaida(text)}
-              style={globalStyles.cInputBox}
-            /> */}
             <TextInputMask
               style={globalStyles.cInputBox}
               placeholder="Saída"
@@ -98,23 +81,12 @@ export default function _screen() {
             />
           </View>
 
-        {/* //calendario */}
-        {/* <TextInputMask
-          style={globalStyles.cInputBox}
-          placeholder="Chegada"
-          type={'datetime'}
-          options={{format: 'DD/MM/YYYY', }}
-          value={dataChegada}
-          onChangeText={(text) => setDataChegada(text)}
-        /> */}
-        {/* //calendário */}
-
-
-
-          <Button 
-            title="Pesquisar" 
+        <StyledButton
+            title="Pesquisar"
+            style={globalStyles.login}
             onPress={handleButtonPress} 
           />
+
         </View>
         <View style={globalStyles.separator} />
         
