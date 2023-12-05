@@ -122,11 +122,11 @@ export default function details() {
             <Text style={globalStyles.h3}>{descricao}</Text>
       </View>
       <View style={globalStyles.columnDetail}>
-        <TouchableOpacity style={globalStyles.button} onPress={() => handleButtonPress(1)}>
-          <Text style={globalStyles.buttonText}>Opções de Quarto</Text>
+        <TouchableOpacity style={globalStyles.buttonFavoritos} onPress={() => handleButtonPress(1)}>
+          <Text style={globalStyles.buttonText}>Adicionar Favoritos</Text>
         </TouchableOpacity>
         <TouchableOpacity style={globalStyles.button} onPress={() => handleButtonPress(2)}>
-          <Text style={globalStyles.buttonText}>Ver Localização</Text>
+          <Text style={globalStyles.buttonText}>Opções de Quarto</Text>
         </TouchableOpacity>
         <TouchableOpacity style={globalStyles.buttonReservar} onPress={() => handleButtonPress(3)}>
           <Text style={globalStyles.buttonText}>Reservar</Text>

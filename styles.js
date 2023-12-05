@@ -176,6 +176,13 @@ export const globalStyles = StyleSheet.create({
         borderRadius: 10, // Bordas mais arredondadas
         marginBottom: 6, // Espaço entre os botões
       },
+      buttonFavoritos: {
+        backgroundColor: '#daa520',
+        padding: 10,
+        // borderRadius: 5,
+        borderRadius: 10, // Bordas mais arredondadas
+        marginBottom: 6, // Espaço entre os botões
+      },
       buttonReservar: {
         backgroundColor: '#8fbc8f',
         padding: 10,
