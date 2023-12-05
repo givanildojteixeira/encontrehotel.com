@@ -215,6 +215,8 @@ export const globalStyles = StyleSheet.create({
     checkBoxContainer: {
       backgroundColor: 'transparent', // Define o fundo como transparente
       borderWidth: 0, // Remove a borda (opcional)
+      marginRight: 0,
+      marginBottom: 0,
     },
 
       image: {

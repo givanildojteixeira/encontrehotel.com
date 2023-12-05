@@ -13,9 +13,10 @@ export const data = [
     local: "Rio de Janeiro",
     vista: "Beira Mar",
     descricao: "O melhor hotel da cidade, vista para o mar.",
-    quarto: "Quarto Classico Twin com 2 camas de casal e vista para a praia",
+    quarto: "Quarto Classico Twin",
     cancelamento: true,
     preco: "1500",
+    adicionais: "",
   },
   {
     id:"2",
@@ -31,9 +32,10 @@ export const data = [
     local: "Rio de Janeiro",
     vista: "Beira Mar",
     descricao: "Vista para o mar obstruída.",
-    quarto: "Quarto duplo single com 2 camas de casal",
+    quarto: "Quarto duplo single ",
     cancelamento: false,
     preco: "1100",
+    adicionais: "",
   },
   {
     id:"3",
@@ -52,6 +54,7 @@ export const data = [
     quarto: "Quarto duplo",
     cancelamento: true,
     preco: "500",
+    adicionais: "",
   },
 
 ];

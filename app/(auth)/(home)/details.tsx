@@ -12,7 +12,7 @@ import { data } from "../../../mocks/data";
 import { ImageBackground } from 'react-native';
 
 export default function details() {
-  const { id, nome,estrelas,local, vista, descricao, quarto, cancelamento ,preco } = useGlobalSearchParams();
+  const { id, nome, estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais} = useGlobalSearchParams();
   const navigation = useNavigation();
   const handleButtonPress = (qual: number) => {
     const parametrosParaEnviar = {
@@ -25,12 +25,15 @@ export default function details() {
       quarto,
       cancelamento,
       preco,
+      adicionais,
     };
 
     if (qual === 1) {
-      console.log('Botão Opção de quarto!');
+
+      navigation.navigate('favoritos', parametrosParaEnviar as { [key: string]: any });
+
     } else if (qual === 2) {
-      console.log('Botão Ver Localização!');
+      navigation.navigate('quartos', parametrosParaEnviar as { [key: string]: any });
     } else {
       navigation.navigate('reservar', parametrosParaEnviar as { [key: string]: any });
     }
@@ -120,6 +123,13 @@ export default function details() {
               <Text style={globalStyles.h3}>{vista}</Text>
             </View>
             <Text style={globalStyles.h3}>{descricao}</Text>
+          
+           <View style={globalStyles.separator} />
+
+            <Text style={globalStyles.h3}>Quarto:{quarto}</Text>
+            {/* <Text style={globalStyles.h3}>{quarto}</Text> */}
+            <Text style={globalStyles.h3}>Adicionais:</Text>
+            <Text style={globalStyles.h3}>{adicionais}</Text>
       </View>
       <View style={globalStyles.columnDetail}>
         <TouchableOpacity style={globalStyles.buttonFavoritos} onPress={() => handleButtonPress(1)}>

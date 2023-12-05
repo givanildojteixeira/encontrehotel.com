@@ -14,7 +14,7 @@ import useStore from '../../../states/store';
 import { ImageBackground } from 'react-native';
 
 export default function details() {
-  const { id, nome,estrelas,local, vista, descricao, quarto, cancelamento ,preco } = useGlobalSearchParams();
+  const { id, nome,estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais } = useGlobalSearchParams();
 
   const cidade = useStore((state) => state.cidade);
   const dataChegada = useStore((state) => state.dataChegada);
@@ -22,14 +22,15 @@ export default function details() {
 
   const handleButtonPress = (qual: number) => {
     if (qual === 1) {
-      console.log('Botão Opção de quarto!');
+      console.log(checked);
+  
     } else if (qual === 2) {
       console.log('Botão Ver Localização!');
     } else {
       console.log('Botão Reservar!');
     }
   };
-  
+  //radio
   const [checked, setChecked] = useState('first');
   //checkbox
   const [check1, setCheck1] = useState(false);
