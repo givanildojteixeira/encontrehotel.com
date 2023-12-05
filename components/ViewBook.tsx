@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { Alert, Text, View } from "react-native";
-import Book from "../types/Book";
+import Book from "../types/Hoteis";
 import StyledButton from "./StyledButton";
 
 interface ViewBookProps {

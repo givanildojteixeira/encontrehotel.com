@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalSearchParams, useNavigation } from "expo-router";
-import { View, FlatList, TouchableOpacity, Modal, StyleSheet, Dimensions } from 'react-native';
-
+import { View, FlatList, TouchableOpacity, Modal, } from 'react-native';
 import { Text } from "@rneui/base";
 import { Image } from "@rneui/themed";
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -10,6 +9,8 @@ import * as utils from "../../../utils";
 import { data } from "../../../mocks/data";
 
 import { ImageBackground } from 'react-native';
+import useCollection from '../../../firebase/hooks/useCollection';
+import Hotel from '../../../types/Hoteis';
 
 export default function details() {
   const { id, nome, estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais} = useGlobalSearchParams();
@@ -27,8 +28,33 @@ export default function details() {
       preco,
       adicionais,
     };
+    const { data, create, remove, refreshData, loading } =
+    useCollection<Hotel>("hoteis");
 
     if (qual === 1) {
+      //gravar favoritos
+      {async () => {
+        try {
+          await create({
+            nomeHotel: {nome},
+            nroEestrelas: {estrelas},
+            localizacao: {local},
+            pontoVista: {vista},
+            observacao : {descricao},
+            quantQuartos: {quarto},
+            cancela: {cancelamento},
+            valor: {preco},
+            opcionais: {adicionais}
+          });
+
+          await refreshData();
+        } catch (error: any) {
+          Alert.alert("Create Book error", error.toString());
+        }
+      }}
+
+
+
 
       navigation.navigate('favoritos', parametrosParaEnviar as { [key: string]: any });
 
