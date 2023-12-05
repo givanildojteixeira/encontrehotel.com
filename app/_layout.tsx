@@ -32,8 +32,8 @@ function FirebaseWrapper() {
   const { user, loading } = useAuth()
 
   useEffect(() => {
-    if (user) {
-      // router.replace("/home/");
+    if (user) { 
+      
       router.replace('/(auth)/(home)/home')
     }
   }, [user])

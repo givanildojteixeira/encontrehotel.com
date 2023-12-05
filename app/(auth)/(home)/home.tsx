@@ -58,20 +58,18 @@ export default function _screen() {
             />
           </View>
 
-
-
-          <Button title="Pesquisar" onPress={handleButtonPress} />
+          <Button 
+            style={globalStyles.buttonReservar} 
+            title="Pesquisar" 
+            onPress={handleButtonPress} 
+          
+          />
         </View>
-
-        
         <View style={globalStyles.separator} />
         
         <View>
         <Image source={require('../../../img/slogan1.jpeg')} style={globalStyles.imagemCapa} />
-
         </View>
-        
-  
       </View>
   );
 
