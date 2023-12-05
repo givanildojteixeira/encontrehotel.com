@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalSearchParams, useNavigation } from "expo-router";
-import { View, FlatList, TouchableOpacity, Modal, } from 'react-native';
+import { View, FlatList, TouchableOpacity, Modal, Alert, } from 'react-native';
 import { Text } from "@rneui/base";
 import { Image } from "@rneui/themed";
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -10,7 +10,7 @@ import { data } from "../../../mocks/data";
 
 import { ImageBackground } from 'react-native';
 import useCollection from '../../../firebase/hooks/useCollection';
-import Hotel from '../../../types/Hoteis';
+import Hotel from '../../../types/Book';
 
 export default function details() {
   const { id, nome, estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais} = useGlobalSearchParams();
@@ -44,7 +44,7 @@ export default function details() {
             quantQuartos: {quarto},
             cancela: {cancelamento},
             valor: {preco},
-            opcionais: {adicionais}
+            opcionais: {adicionais},
           });
 
           await refreshData();
@@ -52,9 +52,6 @@ export default function details() {
           Alert.alert("Create Book error", error.toString());
         }
       }}
-
-
-
 
       navigation.navigate('favoritos', parametrosParaEnviar as { [key: string]: any });
 
