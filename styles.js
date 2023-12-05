@@ -1,11 +1,26 @@
 import {StyleSheet} from 'react-native';
 import Constants from "expo-constants";
+
 export const globalStyles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#fff",
       padding: 16,
       marginTop: Constants.statusBarHeight,
+    },
+    containerIndex: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 16,
+    },
+    headerContainer: {
+      backgroundColor: "#7cfc00",
+      padding: 35,
+      // borderWidth: 1, // Largura da borda
+      borderRadius: 5, // Raio de borda para arredondar
+      height:120,
     },
     item: {
       // flexDirection: 'row',
@@ -86,6 +101,11 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign:"left",
       },
+    h2a: {
+      marginTop: 2,
+      fontSize: 16,
+      textAlign:"center",
+    },
     h3: {
         // marginTop: 8,
         fontSize: 16,
@@ -141,7 +161,7 @@ export const globalStyles = StyleSheet.create({
       buttonReservar: {
         backgroundColor: '#8fbc8f',
         padding: 10,
-        borderRadius: 5,
+        // borderRadius: 5,
         borderRadius: 10, // Bordas mais arredondadas
         marginBottom: 6, // Espaço entre os botões
       },
@@ -211,5 +231,40 @@ export const globalStyles = StyleSheet.create({
       },
       imageGalleryContainer: {
         alignItems: 'center', // Isso centraliza horizontalmente
+      },
+      containerLogin: {
+        // flex: 1,
+        // paddingHorizontal:20,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 26,
+      },
+      input: {
+        //TextInput do Login
+        height: 40,
+        width: "90%",
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 16,
+        paddingLeft: 10,
+        fontSize: 18,
+
+      },
+      login: {
+        //botão de login
+        width: "90%",
+        paddingHorizontal: 8,
+        // borderRadius: 15,
+      },
+
+      register: {
+        //pedido de login e senha
+        color: "blue",
+        fontWeight: "600",
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 16,
+
       },
   });

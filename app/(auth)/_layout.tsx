@@ -14,7 +14,7 @@ export default function _layout() {
         options={{
           headerShown: false,
           tabBarIcon: () => (
-            <Icon type="ionicon" name="search" color={theme.colors.primary} />
+            <Icon type="ionicon" name="search"  />
           ),
           title: "Pesquisar",
         }}
@@ -25,7 +25,7 @@ export default function _layout() {
         options={{
           headerShown: false,
           tabBarIcon: () => (
-            <Icon type="ionicon" name="heart" color={theme.colors.primary} />
+            <Icon type="ionicon" name="heart"  />
           ),
           title: "Favoritos",
         }}
@@ -35,7 +35,7 @@ export default function _layout() {
         options={{
           headerShown: false,
           tabBarIcon: () => (
-            <Icon type="ionicon" name="calendar" color={theme.colors.primary} />
+            <Icon type="ionicon" name="calendar"  />
           ),
           title: "Reservas",
         }}
@@ -45,7 +45,7 @@ export default function _layout() {
         options={{
           headerShown: false,
           tabBarIcon: () => (
-            <Icon type="antdesign" name="user" color={theme.colors.primary} />
+            <Icon type="antdesign" name="user"  />
           ),
           title: "Profile",
         }}
