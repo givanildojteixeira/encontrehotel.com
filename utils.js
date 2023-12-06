@@ -12,7 +12,8 @@ export const formatarPreco = (valor) => {
 
 export const isCancelamentoGratis = (isCancela ) => {
     let textoCancelamento;
-    if (isCancela) {
+    // if (isCancela.equals) {
+    if (isCancela === "S") {
       textoCancelamento = '*Cancelamento grátis';
     } else {
       textoCancelamento = '*Cancelamento pode ter tarifas';

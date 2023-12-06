@@ -22,6 +22,15 @@ export const globalStyles = StyleSheet.create({
       borderRadius: 5, // Raio de borda para arredondar
       height:120,
     },
+    Container2ColunasJustificadas:{
+      flexDirection: 'row', // Para organizar em linha (horizontal)
+      justifyContent: 'space-between', // Para distribuir espaço entre as colunas
+    },
+    colunasDivididas: {
+      flex: 1, // Para ocupar a metade do espaço disponível
+      // marginLeft: 16, // Adapte conforme necessário
+    },
+
     item: {
       // flexDirection: 'row',
     //   alignItems: '',
@@ -85,10 +94,12 @@ export const globalStyles = StyleSheet.create({
     }, 
     imagemCapa: {
         width: '100%',
-        height:300,
+        height:400,
         marginRight: 10,
         borderRadius: 25, // Para tornar a imagem circular, ajuste conforme necessário
-        alignItems: 'center',
+        alignItems: 'center',       // Centraliza horizontalmente
+        justifyContent: 'center',   // Centraliza verticalmente
+        resizeMode: 'stretch', // ou 'contain' ou 'stretch'
       },
     h1: {
         marginTop: 8,
@@ -101,10 +112,29 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign:"left",
       },
+    h2subtitulo: {
+        marginTop: 5,
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign:"left",
+      },
+    h2texto: {
+        // marginTop: 2,
+        fontSize: 16,
+        // fontWeight: 'bold',
+        textAlign:"left",
+      },
     h2a: {
       marginTop: 2,
       fontSize: 16,
       textAlign:"center",
+    },
+    h2Home:{
+      marginTop: 2,
+      fontSize: 20,
+      textAlign:"center",
+      fontWeight: 'bold',
+
     },
     h3: {
         // marginTop: 8,
@@ -120,6 +150,10 @@ export const globalStyles = StyleSheet.create({
         // marginTop: 8,
         fontSize:13,
         textAlign:"right",
+      },
+      linkText: {
+        textDecorationLine: 'underline',
+        color: 'blue', // ou qualquer cor desejada para o link
       },
     dValor: {
         // marginTop: 8,
@@ -158,6 +192,13 @@ export const globalStyles = StyleSheet.create({
         borderRadius: 10, // Bordas mais arredondadas
         marginBottom: 6, // Espaço entre os botões
       },
+      buttonFavoritos: {
+        backgroundColor: '#daa520',
+        padding: 10,
+        // borderRadius: 5,
+        borderRadius: 10, // Bordas mais arredondadas
+        marginBottom: 6, // Espaço entre os botões
+      },
       buttonReservar: {
         backgroundColor: '#8fbc8f',
         padding: 10,
@@ -190,6 +231,8 @@ export const globalStyles = StyleSheet.create({
     checkBoxContainer: {
       backgroundColor: 'transparent', // Define o fundo como transparente
       borderWidth: 0, // Remove a borda (opcional)
+      marginRight: 0,
+      marginBottom: 0,
     },
 
       image: {
@@ -253,9 +296,11 @@ export const globalStyles = StyleSheet.create({
       },
       login: {
         //botão de login
-        width: "90%",
+        width: "100%",
         paddingHorizontal: 8,
         // borderRadius: 15,
+        alignItems: "center",
+        justifyContent: "center",
       },
 
       register: {

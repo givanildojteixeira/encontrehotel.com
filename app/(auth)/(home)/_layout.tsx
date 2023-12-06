@@ -9,6 +9,8 @@ export default function _layout() {
       <Stack.Screen name="listaHotel" options={{ headerShown: false }} />
       <Stack.Screen name="details" options={{ title: "Voltar para a Lista", }} />
       <Stack.Screen name="reservar" options={{ title: "Voltar para a Lista", }} />
+      <Stack.Screen name="quartos" options={{ title: "Voltar para a reserva", }} />
+      <Stack.Screen name="termos" options={{ title: "Voltar para a reserva", }} />
     </Stack>
     
   );

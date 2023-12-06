@@ -1,32 +1,32 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { Alert, Text, View } from "react-native";
-import Book from "../types/Book";
 import StyledButton from "./StyledButton";
+import Hotel from "../types/Hotel";
 
-interface ViewBookProps {
-  book: Book;
+interface ViewHotelProps {
+  hotel: Hotel;
   onDelete: Function;
 }
 
-export default function ViewBook({ book, onDelete }: ViewBookProps) {
+export default function ViewBook({ hotel, onDelete }: ViewHotelProps) {
   const router = useRouter();
 
   return (
     <View
       style={{ borderTopColor: "darkblue", borderTopWidth: 1, marginTop: 12 }}
     >
-      <Text>id: {book.id}</Text>
-      <Text>Title: {book.title}</Text>
-      <Text>Author: {book.author}</Text>
-      <Text>Pages: {book.pages}</Text>
+      <Text>id: {hotel.id}</Text>
+      <Text>Nome: {hotel.nomeHotel}</Text>
+      <Text>Vista: {hotel.pontoVista}</Text>
+      <Text>Quarto: {hotel.tipoQuarto}</Text>
 
       <View style={{ flexDirection: "row" }}>
         <StyledButton
           title="View Book Details"
           onPress={() => {
-            if (book.id) {
-              router.push("/home/" + book.id);
+            if (hotel.id) {
+              router.push("/home/" + hotel.id);
             } else {
               Alert.alert(
                 "View error",
@@ -40,7 +40,7 @@ export default function ViewBook({ book, onDelete }: ViewBookProps) {
         <StyledButton
           title="Delete"
           onPress={() => {
-            if (book.id) {
+            if (hotel.id) {
               Alert.alert("Delete Book", "Are you sure?", [
                 {
                   text: "Yes",

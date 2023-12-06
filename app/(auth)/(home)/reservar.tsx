@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobalSearchParams } from "expo-router";
+import { Link, useGlobalSearchParams } from "expo-router";
 import { View, TouchableOpacity, Modal, StyleSheet, Dimensions } from 'react-native';
 
 import { Text } from "@rneui/base";
@@ -9,22 +9,28 @@ import { globalStyles } from "../../../styles";
 import * as utils from "../../../utils";
 import { data } from "../../../mocks/data";
 import { RadioButton } from 'react-native-paper';
+import useStore from '../../../states/store';
 
 import { ImageBackground } from 'react-native';
 
 export default function details() {
-  const { id, nome,estrelas,local, vista, descricao, cancelamento ,preco } = useGlobalSearchParams();
+  const { id, nome,estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais } = useGlobalSearchParams();
+
+  const cidade = useStore((state) => state.cidade);
+  const dataChegada = useStore((state) => state.dataChegada);
+  const dataSaida = useStore((state) => state.dataSaida);
 
   const handleButtonPress = (qual: number) => {
     if (qual === 1) {
-      console.log('Botão Opção de quarto!');
+      console.log(checked);
+  
     } else if (qual === 2) {
       console.log('Botão Ver Localização!');
     } else {
       console.log('Botão Reservar!');
     }
   };
-  
+  //radio
   const [checked, setChecked] = useState('first');
   //checkbox
   const [check1, setCheck1] = useState(false);
@@ -62,9 +68,24 @@ export default function details() {
     </View>
 
     <Text style={globalStyles.h2}>Dados da reserva:</Text>
-    <Text style={globalStyles.h3}>Data entrada:</Text>
-    <Text style={globalStyles.h3}>Data saída:</Text>
-    <Text style={globalStyles.h3}>Tipo da acomodação:</Text>
+    {/* <Text style={globalStyles.h3}>Cidade:{cidade}</Text>
+    <Text style={globalStyles.h3}>Data entrada:{dataChegada}</Text>
+    <Text style={globalStyles.h3}>Data saída:{dataSaida}</Text> */}
+
+    <View style={globalStyles.Container2ColunasJustificadas}>
+      <View style={globalStyles.colunasDivididas}>
+        <Text style={globalStyles.h3}>Cidade:</Text>
+        <Text style={globalStyles.h3}>Data entrada:</Text>
+        <Text style={globalStyles.h3}>Data saída:</Text>
+      </View>
+      <View style={globalStyles.colunasDivididas}>
+        <Text style={globalStyles.h3}>{cidade}</Text>
+        <Text style={globalStyles.h3}>{dataChegada}</Text>
+        <Text style={globalStyles.h3}>{dataSaida}</Text>
+      </View>
+    </View>
+
+    <Text style={globalStyles.h3}>Tipo da acomodação: {quarto}</Text>
     <View style={globalStyles.separator} />
 
     <Text style={globalStyles.h2}>Forma de pagamento:</Text>
@@ -100,12 +121,17 @@ export default function details() {
 
     <View style={globalStyles.separator} />
 
-    <CheckBox
-      title="Concordo com os termos"
-      checked={check1}
-      onPress={() => setCheck1(!check1)}
-      containerStyle={globalStyles.checkBoxContainer}
-    />
+    <View style={globalStyles.emlinha}>
+      <CheckBox
+        // title="Concordo com os termos"
+        checked={check1}
+        onPress={() => setCheck1(!check1)}
+        containerStyle={globalStyles.checkBoxContainer}
+      />
+      <Link href="/termos">
+        <Text style={globalStyles.linkText}>Concordo com os termos</Text>
+      </Link>
+    </View>
 
 
         <TouchableOpacity style={globalStyles.button} onPress={() => handleButtonPress(1)}>

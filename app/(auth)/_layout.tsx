@@ -47,7 +47,7 @@ export default function _layout() {
           tabBarIcon: () => (
             <Icon type="antdesign" name="user"  />
           ),
-          title: "Profile",
+          title: "Conta",
         }}
       />
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalSearchParams, useNavigation } from "expo-router";
-import { View, FlatList, TouchableOpacity, Modal, StyleSheet, Dimensions } from 'react-native';
-
+import { View, FlatList, TouchableOpacity, Modal, Alert, } from 'react-native';
 import { Text } from "@rneui/base";
 import { Image } from "@rneui/themed";
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -10,26 +9,49 @@ import * as utils from "../../../utils";
 import { data } from "../../../mocks/data";
 
 import { ImageBackground } from 'react-native';
+import useCollection from '../../../firebase/hooks/useCollection';
+import Hotel from '../../../types/Hotel';
 
 export default function details() {
-  const { id, nome,estrelas,local, vista, descricao, cancelamento ,preco } = useGlobalSearchParams();
+  const { id, nome, estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais} = useGlobalSearchParams();
   const navigation = useNavigation();
+  
+  
+  
   const handleButtonPress = (qual: number) => {
     const parametrosParaEnviar = {
-      id,
-      nome,
-      estrelas,
-      local,
-      vista,
-      descricao,
-      cancelamento,
-      preco,
+      id, nome, estrelas, local, vista, descricao, quarto, cancelamento, preco, adicionais,
     };
-
+    
     if (qual === 1) {
-      console.log('Botão Opção de quarto!');
+      //gravar favoritos
+      const { data, create, remove, refreshData, loading } = useCollection<Hotel>("hoteis");
+      //ajustes
+      // let numnroestrela = parseInt(estrelas +'');
+      {async () => {
+        try {
+          await create({
+            nomeHotel: nome as string ,
+            nroEestrelas: estrelas as string,
+            localizacao: local as string,
+            pontoVista: vista as string,
+            observacao : descricao as string,
+            tipoQuarto: quarto as string,
+            cancela: cancelamento as string,
+            valor: preco as string,
+            opcionais: adicionais as string,
+          });
+
+          await refreshData();
+        } catch (error: any) {
+          Alert.alert("Create Book error", error.toString());
+        }
+      }}
+
+      navigation.navigate('favoritos', parametrosParaEnviar as { [key: string]: any });
+
     } else if (qual === 2) {
-      console.log('Botão Ver Localização!');
+      navigation.navigate('quartos', parametrosParaEnviar as { [key: string]: any });
     } else {
       navigation.navigate('reservar', parametrosParaEnviar as { [key: string]: any });
     }
@@ -119,13 +141,20 @@ export default function details() {
               <Text style={globalStyles.h3}>{vista}</Text>
             </View>
             <Text style={globalStyles.h3}>{descricao}</Text>
+          
+           <View style={globalStyles.separator} />
+
+            <Text style={globalStyles.h3}>Quarto:{quarto}</Text>
+            {/* <Text style={globalStyles.h3}>{quarto}</Text> */}
+            <Text style={globalStyles.h3}>Adicionais:</Text>
+            <Text style={globalStyles.h3}>{adicionais}</Text>
       </View>
       <View style={globalStyles.columnDetail}>
-        <TouchableOpacity style={globalStyles.button} onPress={() => handleButtonPress(1)}>
-          <Text style={globalStyles.buttonText}>Opções de Quarto</Text>
+        <TouchableOpacity style={globalStyles.buttonFavoritos} onPress={() => handleButtonPress(1)}>
+          <Text style={globalStyles.buttonText}>Adicionar Favoritos</Text>
         </TouchableOpacity>
         <TouchableOpacity style={globalStyles.button} onPress={() => handleButtonPress(2)}>
-          <Text style={globalStyles.buttonText}>Ver Localização</Text>
+          <Text style={globalStyles.buttonText}>Opções de Quarto</Text>
         </TouchableOpacity>
         <TouchableOpacity style={globalStyles.buttonReservar} onPress={() => handleButtonPress(3)}>
           <Text style={globalStyles.buttonText}>Reservar</Text>
