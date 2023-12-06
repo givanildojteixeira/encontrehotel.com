@@ -17,7 +17,6 @@ export default function details() {
   const navigation = useNavigation();
   
   
-  
   const handleButtonPress = (qual: number) => {
     const parametrosParaEnviar = {
       id, nome, estrelas, local, vista, descricao, quarto, cancelamento, preco, adicionais,
@@ -28,6 +27,9 @@ export default function details() {
       const { data, create, remove, refreshData, loading } = useCollection<Hotel>("hoteis");
       //ajustes
       // let numnroestrela = parseInt(estrelas +'');
+      console.log(nome);
+
+
       {async () => {
         try {
           await create({
@@ -44,7 +46,7 @@ export default function details() {
 
           await refreshData();
         } catch (error: any) {
-          Alert.alert("Create Book error", error.toString());
+          Alert.alert("Create Hotel error", error.toString());
         }
       }}
 
