@@ -1,12 +1,8 @@
 import { FlatList, View } from "react-native";
 import React from "react";
-import { Stack, useGlobalSearchParams } from "expo-router";
-import { Text } from "@rneui/base";
 import Loading from "../../../components/Loading";
 import { globalStyles } from "../../../styles";
 import Hotel from "../../../types/Hotel";
-import useDocument from "../../../firebase/hooks/useDocument";
-import HeaderRight from "../../../components/HeaderRight";
 import useCollection from "../../../firebase/hooks/useCollection";
 import ViewBook from "../../../components/ViewHotel";
 import { data } from "../../../mocks/data";
