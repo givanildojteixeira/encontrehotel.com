@@ -10,41 +10,36 @@ import { data } from "../../../mocks/data";
 
 import { ImageBackground } from 'react-native';
 import useCollection from '../../../firebase/hooks/useCollection';
-import Hotel from '../../../types/Book';
+import Hotel from '../../../types/Hotel';
 
 export default function details() {
   const { id, nome, estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais} = useGlobalSearchParams();
   const navigation = useNavigation();
+  
+  
+  
   const handleButtonPress = (qual: number) => {
     const parametrosParaEnviar = {
-      id,
-      nome,
-      estrelas,
-      local,
-      vista,
-      descricao,
-      quarto,
-      cancelamento,
-      preco,
-      adicionais,
+      id, nome, estrelas, local, vista, descricao, quarto, cancelamento, preco, adicionais,
     };
-    const { data, create, remove, refreshData, loading } =
-    useCollection<Hotel>("hoteis");
-
+    
     if (qual === 1) {
       //gravar favoritos
+      const { data, create, remove, refreshData, loading } = useCollection<Hotel>("hoteis");
+      //ajustes
+      // let numnroestrela = parseInt(estrelas +'');
       {async () => {
         try {
           await create({
-            nomeHotel: {nome},
-            nroEestrelas: {estrelas},
-            localizacao: {local},
-            pontoVista: {vista},
-            observacao : {descricao},
-            quantQuartos: {quarto},
-            cancela: {cancelamento},
-            valor: {preco},
-            opcionais: {adicionais},
+            nomeHotel: nome as string ,
+            nroEestrelas: estrelas as string,
+            localizacao: local as string,
+            pontoVista: vista as string,
+            observacao : descricao as string,
+            tipoQuarto: quarto as string,
+            cancela: cancelamento as string,
+            valor: preco as string,
+            opcionais: adicionais as string,
           });
 
           await refreshData();

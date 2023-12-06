@@ -15,7 +15,7 @@ export default function _screen() {
 
   const setCidade = useStore((state) => state.setCidade);
   
-  const handlePress = (item) => {
+  const handlePress = (item: { local: any; }) => {
     //acerte os dados do store
     const novaCidade = item.local;
     setCidade(novaCidade);
