@@ -6,9 +6,13 @@ import {
   getCountFromServer,
   getDocs,
   getFirestore,
+  limitToLast,
+  orderBy,
+  query,
   updateDoc,
-} from "firebase/firestore";
-import { useEffect, useState } from "react";
+  where,
+} from 'firebase/firestore'
+import { useEffect, useState } from 'react'
 
 /**
  * Hook to access and manage a firestore collection.
@@ -20,9 +24,9 @@ export default function useCollection<T extends { [x: string]: any }>(
   collectionName: string,
   precache = true
 ) {
-  const db = getFirestore();
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Array<T>>([]);
+  const db = getFirestore()
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<Array<T>>([])
 
   /**
    * Create a new document in the collection.
@@ -30,17 +34,17 @@ export default function useCollection<T extends { [x: string]: any }>(
    * @returns Id of the created document.
    */
   const create = async (newVal: T) => {
-    const docRef = await addDoc(collection(db, collectionName), newVal);
-    return docRef.id;
-  };
+    const docRef = await addDoc(collection(db, collectionName), newVal)
+    return docRef.id
+  }
 
   /**
    * Remove a document from collection.
    * @param id Document id to be removed.
    */
   const remove = async (id: string) => {
-    await deleteDoc(doc(db, collectionName, id));
-  };
+    await deleteDoc(doc(db, collectionName, id))
+  }
 
   /**
    * Update a document in the collection.
@@ -48,50 +52,59 @@ export default function useCollection<T extends { [x: string]: any }>(
    * @param newVal New value for the given document (overrides the entire Document!).
    */
   const update = async (id: string, newVal: T) => {
-    if (newVal.id) delete newVal.id;
-    await updateDoc(doc(db, collectionName, id), newVal);
-  };
+    if (newVal.id) delete newVal.id
+    await updateDoc(doc(db, collectionName, id), newVal)
+  }
 
   /**
    * Get all documents from the collection.
    * @returns An array of the collection type with all elements.
    */
   const all = async () => {
-    setLoading(true);
-    const querySnapshot = await getDocs(collection(db, collectionName));
+    setLoading(true)
+    const querySnapshot = await getDocs(collection(db, collectionName))
     const dataAsMap = querySnapshot.docs.map((doc) => {
-      const data = doc.data() as T;
-      return { id: doc.id, ...data };
-    });
-    setData(dataAsMap);
-    setLoading(false);
-    return dataAsMap;
-  };
+      const data = doc.data() as T
+      return { id: doc.id, ...data }
+    })
+    setData(dataAsMap)
+    setLoading(false)
+    return dataAsMap
+  }
 
   /**
    * get the number of Documents
    * @returns the count as number
    */
   const count = async () => {
-    setLoading(true);
-    const snapshot = await getCountFromServer(collection(db, collectionName));
-    const count = snapshot.data().count;
-    setLoading(false);
-    return count;
-  };
+    setLoading(true)
+    const snapshot = await getCountFromServer(collection(db, collectionName))
+    const count = snapshot.data().count
+    setLoading(false)
+    return count
+  }
 
   /**
    * Alias to refetch all.
    */
   const refreshData = () => {
-    all();
-  };
+    all()
+  }
 
   // Initial call to fill 'data' with all documents when precache is active.
   useEffect(() => {
-    if (precache) all();
+    if (precache) all()
     // eslint-disable-next-line
-  }, []);
+  }, [collectionName])
 
-  return { data, loading, create, remove, update, all, count, refreshData };
+  return {
+    data,
+    loading,
+    create,
+    remove,
+    update,
+    all,
+    count,
+    refreshData,
+  }
 }

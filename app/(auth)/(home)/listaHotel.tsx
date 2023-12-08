@@ -1,9 +1,9 @@
 import React from "react";
 import { View, FlatList, TouchableOpacity } from "react-native";
-import { Text } from "@rneui/base";
+import { Icon, Text } from "@rneui/base";
 import { Image } from "@rneui/themed";
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/Ionicons';
 import { data } from "../../../mocks/data";
 import { globalStyles } from "../../../styles";
 import * as utils from "../../../utils";
@@ -38,11 +38,11 @@ export default function _screen() {
               <View>
                 <utils.Estrelas quantidade={item.estrelas} />
                 <View style={globalStyles.deschotel}>
-                  <Icon name="location" size={20} color="#979595" />
+                  <Icon type="ionicon" name="location" size={20} color="#979595" />
                   <Text style={globalStyles.h3}>{item.local}</Text>
                 </View>
                 <View style={globalStyles.deschotel}>
-                  <Icon name="walk" size={20} color="#979595" />
+                  <Icon type="ionicon" name="walk" size={20} color="#979595" />
                   <Text style={globalStyles.h3}>{item.vista}</Text>
                 </View>
               </View>
