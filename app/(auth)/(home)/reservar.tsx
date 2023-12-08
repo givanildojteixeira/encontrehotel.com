@@ -1,28 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useGlobalSearchParams } from "expo-router";
-import { View, TouchableOpacity, Modal, StyleSheet, Dimensions } from 'react-native';
+import { View, TouchableOpacity, Modal, StyleSheet, Dimensions, Alert } from 'react-native';
 
-import { Text } from "@rneui/base";
+import { Icon, Text } from "@rneui/base";
 import { CheckBox } from "@rneui/themed";
-import Icon from 'react-native-vector-icons/Ionicons';
 import { globalStyles } from "../../../styles";
 import * as utils from "../../../utils";
 import { data } from "../../../mocks/data";
 import { RadioButton } from 'react-native-paper';
 import useStore from '../../../states/store';
-
-import { ImageBackground } from 'react-native';
+import useAuth from '../../../firebase/hooks/useAuth'
+import useCollection from '../../../firebase/hooks/useCollection'
 
 export default function details() {
   const { id, nome,estrelas,local, vista, descricao, quarto, cancelamento ,preco, adicionais } = useGlobalSearchParams();
 
   const cidade = useStore((state) => state.cidade);
-  const dataChegada = useStore((state) => state.dataChegada);
-  const dataSaida = useStore((state) => state.dataSaida);
+  const dtaChegada = useStore((state) => state.dataChegada);
+  const dtaSaida = useStore((state) => state.dataSaida);
 
-  const handleButtonPress = (qual: number) => {
+  const { user } = useAuth()
+  const {  create, refreshData } = useCollection('users/' + user?.uid + '/reservas')
+  console.log('fav: ', data)
+
+  const handleButtonPress = async (qual: number) => {
+
     if (qual === 1) {
-      console.log(checked);
+      //reservar
+      try {
+        await create({
+          nomeHotel: nome as string,
+          nroEestrelas: estrelas as string,
+          localizacao: local as string,
+          pontoVista: vista as string,
+          observacao: descricao as string,
+          tipoQuarto: quarto as string,
+          cancela: cancelamento as string,
+          valor: preco as string,
+          opcionais: adicionais as string,
+          dataChegada:dtaChegada as string,
+          dataSaida:dtaSaida as string,
+          pagamento: cPagto as string,
+        })
+
+        await refreshData()
+      } catch (error: any) {
+        Alert.alert('Create Hotel error', error.toString())
+      }
+      Alert.alert('Reserva concluída com sucesso, consulte a aba de Reservas!')
   
     } else if (qual === 2) {
       console.log('Botão Ver Localização!');
@@ -31,7 +56,7 @@ export default function details() {
     }
   };
   //radio
-  const [checked, setChecked] = useState('first');
+  const [cPagto, setChecked] = useState('first');
   //checkbox
   const [check1, setCheck1] = useState(false);
 
@@ -48,11 +73,11 @@ export default function details() {
       <View style={globalStyles.columnDetail}>
         <Text style={globalStyles.h3}>{descricao}</Text>
         <View style={globalStyles.deschotel}>
-          <Icon name="location" size={20} color="#979595" />
+          <Icon type="ionicon" name="location" size={20} color="#979595" />
           <Text style={globalStyles.h3}>{local}</Text>
         </View>
         <View style={globalStyles.deschotel}>
-          <Icon name="walk" size={20} color="#979595" />
+          <Icon type="ionicon" name="walk" size={20} color="#979595" />
           <Text style={globalStyles.h3}>{vista}</Text>
         </View>
       </View>
@@ -80,8 +105,8 @@ export default function details() {
       </View>
       <View style={globalStyles.colunasDivididas}>
         <Text style={globalStyles.h3}>{cidade}</Text>
-        <Text style={globalStyles.h3}>{dataChegada}</Text>
-        <Text style={globalStyles.h3}>{dataSaida}</Text>
+        <Text style={globalStyles.h3}>{dtaChegada}</Text>
+        <Text style={globalStyles.h3}>{dtaSaida}</Text>
       </View>
     </View>
 
@@ -93,25 +118,25 @@ export default function details() {
     <View>
       <View style={globalStyles.emlinha}>
         <RadioButton
-          value="first"
-          status={checked === 'first' ? 'checked' : 'unchecked'}
-          onPress={() => setChecked('first')}
+          value="Pix"
+          status={cPagto === 'Pix' ? 'checked' : 'unchecked'}
+          onPress={() => setChecked('Pix')}
         />
         <Text>Pix</Text>
       </View>
       <View style={globalStyles.emlinha}>
         <RadioButton
-          value="second"
-          status={checked === 'second' ? 'checked' : 'unchecked'}
-          onPress={() => setChecked('second')}
+          value="Cartão de Crédito"
+          status={cPagto === 'Cartão de Crédito' ? 'checked' : 'unchecked'}
+          onPress={() => setChecked('Cartão de Crédito')}
         />
         <Text>Cartão de Crédito</Text>
       </View>
       <View style={globalStyles.emlinha}>
         <RadioButton
-          value="third"
-          status={checked === 'third' ? 'checked' : 'unchecked'}
-          onPress={() => setChecked('third')}
+          value="Boleto"
+          status={cPagto === 'Boleto' ? 'checked' : 'unchecked'}
+          onPress={() => setChecked('Boleto')}
         />
         <Text>Boleto</Text>
       </View>
