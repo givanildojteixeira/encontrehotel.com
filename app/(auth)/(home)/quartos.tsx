@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useGlobalSearchParams, useNavigation } from "expo-router";
 import { View, TouchableOpacity } from 'react-native';
 
-import { Text } from "@rneui/base";
+import { Icon, Text } from "@rneui/base";
 import { CheckBox } from "@rneui/themed";
-import Icon from 'react-native-vector-icons/Ionicons';
 import { globalStyles } from "../../../styles";
 import * as utils from "../../../utils";
 import { RadioButton } from 'react-native-paper';
@@ -65,11 +64,11 @@ export default function details() {
       <View style={globalStyles.columnDetail}>
         <Text style={globalStyles.h3}>{descricao}</Text>
         <View style={globalStyles.deschotel}>
-          <Icon name="location" size={20} color="#979595" />
+          <Icon type="ionicon"  name="location" size={20} color="#979595" />
           <Text style={globalStyles.h3}>{local}</Text>
         </View>
         <View style={globalStyles.deschotel}>
-          <Icon name="walk" size={20} color="#979595" />
+          <Icon type="ionicon"  name="walk" size={20} color="#979595" />
           <Text style={globalStyles.h3}>{vista}</Text>
         </View>
       </View>

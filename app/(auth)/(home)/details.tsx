@@ -9,25 +9,20 @@ import { data } from '../../../mocks/data'
 import { ImageBackground } from 'react-native'
 import useCollection from '../../../firebase/hooks/useCollection'
 import useAuth from '../../../firebase/hooks/useAuth'
-// import  Icon  from 'react-native-vector-icons/Ionicons'
 
 export default function details() {
   const {id,nome,estrelas,local,vista,descricao,quarto,cancelamento,preco,adicionais,} = useGlobalSearchParams()
   const navigation = useNavigation()
 
   const { user } = useAuth()
-  const {  create, remove, refreshData, loading } = useCollection(
-    'users/' + user?.uid + '/favorites'
-  )
-
-  // console.log('fav: ', data)
+  const {  create, refreshData } = useCollection('users/' + user?.uid + '/favorites')
+  console.log('fav: ', data)
 
   const handleButtonPress = async (qual: number) => {
     const parametrosParaEnviar = {id, nome, estrelas, local, vista, descricao, quarto, cancelamento, preco, adicionais,}
 
     if (qual === 1) {
       console.log(nome, 'ok')
-
       try {
         await create({
           nomeHotel: nome as string,
